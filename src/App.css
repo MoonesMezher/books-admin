@@ -1,0 +1,31 @@
+.books-template {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.pending {
+    background-color: rgba(255, 255, 0, 0.195);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 30px;
+    color: yellow;
+}
+
+.active {
+    background-color: rgba(0, 128, 0, 0.226);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 30px;
+    color: green;
+}
+
+.passive {
+    background-color: rgba(255, 0, 0, 0.199);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 30px;
+    color: red;
+}
