@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiLockAlt } from 'react-icons/bi'
 import { FaBook, FaFile, FaHome, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import Logo from '../assets/images/logo.jpg'
 
 const links = [
     {
@@ -52,12 +53,19 @@ const links = [
 ]
 
 const Sidebar = () => {
+    const [note, setNote] = useState(localStorage.getItem('note')? localStorage.getItem('note'): '');
+
+    const handleNote = (val) => {
+        setNote(val);
+
+        localStorage.setItem('note', val);
+    }
+
     return (
         <aside className='shadow-md fixed left-0 top-0 z-50 bg-white h-screen w-[300px]'>
             <div className='flex justify-between flex-col py-5'>
-                <Link to={'/'} className='overflow-hidden cursor-pointer text-[2rem] font-bold text-center' onClick={() => window.scrollTo(0,0)}>
-                    {/* <img src={} alt='logo' className='w-full h-full object-cover'/> */}
-                    BOOKS
+                <Link to={'/'} className='overflow-hidden cursor-pointer rounded-full w-[70px] h-[70px] mx-auto font-bold text-center' onClick={() => window.scrollTo(0,0)}>
+                    <img src={Logo} alt='logo' className='w-full h-full object-cover'/>
                 </Link>
                 <div className='px-5 mt-10'>
                     {links.map((e, i) => <div key={i} className='flex flex-col gap-5 mb-10'>
@@ -67,6 +75,9 @@ const Sidebar = () => {
                             <span className='text-[1.3rem]'>{s.name}</span>
                         </Link>)}
                     </div>)}
+                    <div className='shadow-md w-[250px] m-[10px] mx-auto border-black rounded-md border-[1px] border-solid overflow-hidden'>
+                        <textarea className='w-full focus:outline-none p-2' rows={5} placeholder='Write your note here' onChange={(e) => handleNote(e.target.value)} value={note}></textarea>
+                    </div>
                 </div>
             </div>
         </aside>

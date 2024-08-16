@@ -2,6 +2,7 @@ import { useRef } from "react"
 import MainInput from "../../components/MainInput/MainInput"
 import { FaPlus } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const AddBook = () => {
     const { id } = useParams();
@@ -10,6 +11,45 @@ const AddBook = () => {
 
     const handleFile = () => {
         inputFile.current.click();
+    }
+
+    const save = () => {
+        
+        if(id) {
+            const data = {
+                id
+            }
+            axios.put('http://localhost:8000/api/book/update', data, {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: localStorage.getItem('token')
+                }
+        ``})
+                .then(res => {
+
+                })
+                .catch(err => {
+                    
+                })
+                .finally()
+        } else {
+            const data = {
+                id
+            }
+            axios.post('http://localhost:8000/api/book/add', data, {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: localStorage.getItem('token')
+                }
+            })
+                .then(res => {
+
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+                .finally()
+        }
     }
 
     return (

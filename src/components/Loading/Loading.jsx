@@ -2,12 +2,12 @@ import './Loading.css'
 
 const Loading = () => {
     return (
-        <section class="loading dots-container">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+        <section className="loading dots-container">
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
+            <div className="dot"></div>
         </section>
     )
 }

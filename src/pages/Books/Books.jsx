@@ -5,56 +5,32 @@ import Img3 from '../../assets/images/books/The Fine Print Special Edition (Drea
 import Img4 from '../../assets/images/books/Things We Never Got Over.jpeg'
 import Img5 from '../../assets/images/books/Twisted Lies.jpeg'
 import BookCard from '../../components/BookCard/BookCard'
-
-const books = [
-    {
-        id: 1,
-        type: 'story',
-        title: 'The world',
-        subtitle: 'Now you can discover thsi world with some awarness',
-        img: Img1,
-        offer: 200,
-        price: 110
-    },
-    {
-        id: 2,
-        type: 'sience',
-        title: 'The map',
-        subtitle: 'Now you can discover thsi world with some awarness',
-        img: Img2,
-        offer: 300,
-        price: 110
-    },
-    {
-        id: 3,
-        type: 'story',
-        title: 'The world',
-        subtitle: 'Now you can discover thsi world with some awarness',
-        img: Img3,
-        offer: 200,
-        price: 110
-    },
-    {
-        id: 4,
-        type: 'story',
-        title: 'The world',
-        subtitle: 'Now you can discover thsi world with some awarness',
-        img: Img4,
-        offer: 200,
-        price: 110
-    },
-    {
-        id: 5,
-        type: 'story',
-        title: 'The world',
-        subtitle: 'Now you can discover thsi world with some awarness',
-        img: Img5,
-        offer: 200,
-        price: 110
-    },
-]
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Books = () => {
+    const [books, setBooks] = useState([])
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/book/get_all_books', {
+            headers: {
+                Accept: 'application/json',
+                Authorization: localStorage.getItem('token'),
+            }
+        })
+            .then(res => {
+                setBooks(res.data.books);
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            .finally(
+                setLoading(false)
+            )
+        
+    }, []);
   return (
     <div>
         <h1 className='underline text-[2rem] font-bold'>Books</h1>

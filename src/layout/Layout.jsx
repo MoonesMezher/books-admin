@@ -9,7 +9,11 @@ const Layout = ({ children }) => {
     const [hide, setHide] = useState(false);
 
     useEffect(() => {
-        setHide(pathname?.includes('/error'))
+        setHide(
+            pathname?.includes('/error')
+            ||
+            pathname?.includes('/login')
+        )
     }, [pathname]);
     
     return (
