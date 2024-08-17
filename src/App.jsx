@@ -13,6 +13,8 @@ import Reports from './pages/Reports/Reports'
 import { useEffect, useState } from 'react'
 import User from './pages/User/User'
 import Login from './pages/Login/Login'
+import SUsers from './pages/SUsers/SUsers'
+import SBooks from './pages/SBooks/SBooks'
 
 function App() {
   const [token, setToken] = useState(
@@ -40,6 +42,8 @@ function App() {
       <Route path='/book/:id' element={token? <Book/>: <Navigate to="/login"/>}/>  
       <Route path='/user/:id' element={token? <User/>: <Navigate to="/login"/>}/>  
       <Route path='/reports' element={token? <Reports/>: <Navigate to="/login"/>}/>  
+      <Route path='/statistics/users' element={token? <SUsers/>: <Navigate to="/login"/>}/>  
+      <Route path='/statistics/books' element={token? <SBooks/>: <Navigate to="/login"/>}/>  
       <Route path='*' element={<Navigate to={'/error'}/>}/>      
       <Route path='/error' element={<ErrorPage/>}/>      
     </Routes>

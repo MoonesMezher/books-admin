@@ -2,10 +2,24 @@ import React, { useState } from 'react'
 import { FaArrowCircleRight, FaBars, FaBrush, FaSearch, FaUsers } from 'react-icons/fa'
 import { FaGear, FaXmark } from 'react-icons/fa6';
 import PopUp from '../components/PopUp/PopUp'
+import axios from 'axios';
 
 const Header = () => {
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
+
+    const handleLogout = () => {
+        axios.post('http://localhost:8000/api/auth/logout', null, {
+            headers: {
+                Accept: 'application/json',
+                Authorization: localStorage.getItem('token')
+            }
+        })
+            .then(res => {
+                localStorage.removeItem('token');
+                window.location.reload();
+            })
+    }
     
     return (
         <header className='shadow-md fixed left-0 top-0 px-4 bg-white w-full z-20 ps-[320px] pe-[50px]'>
@@ -27,7 +41,7 @@ const Header = () => {
                     <div className='py-[20px] flex justify-center gap-2 items-center cursor-pointer duration-300 hover:ps-2'>Theme <FaBrush /></div>
                     <div className='py-[20px] flex justify-center gap-2 items-center cursor-pointer duration-300 hover:ps-2'>Team <FaUsers /></div>
                     <div className='py-[20px] flex justify-center gap-2 items-center cursor-pointer duration-300 hover:ps-2'>Settings <FaGear /></div>
-                    <div className='py-[20px] flex justify-center gap-2 items-center cursor-pointer duration-300 hover:ps-2' onClick={() => setShow2(true)}>Logout <FaArrowCircleRight /></div>
+                    <div className='py-[20px] flex justify-center gap-2 items-center cursor-pointer duration-300 hover:ps-2' onClick={handleLogout}>Logout <FaArrowCircleRight /></div>
                 </div>
             </div>
         </header>

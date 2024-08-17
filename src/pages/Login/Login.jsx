@@ -8,7 +8,6 @@ import axios from 'axios'
 const Login = ({ setToken }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
 
     const to = useNavigate();
@@ -17,7 +16,6 @@ const Login = ({ setToken }) => {
         const data = {
             email,
             password,
-            phoneNumber: phone
         }
 
         setLoading(true)
@@ -48,7 +46,6 @@ const Login = ({ setToken }) => {
             <div className="bg-white shadow-md rounded-md p-5 w-[500px] flex flex-col gap-5">
                 <MainInput type={'text'} placeholder={'Your Email'} value={email} setValue={setEmail} label={'Email'}/>
                 <MainInput type={'text'} placeholder={'Your Password'} value={password} setValue={setPassword} label={'Password'}/>
-                <MainInput type={'text'} placeholder={'Your Phone Number'} value={phone} setValue={setPhone} label={'Phone Number'}/>
                 <div className="mx-auto font-bold text-white bg-black w-fit p-3 px-10 rounded-md my-5 cursor-pointer duration-300 hover:bg-white hover:text-black border-[1px] border-black hover:border-solid" onClick={handleLogin}>Login</div>
             </div>
             {loading && 
